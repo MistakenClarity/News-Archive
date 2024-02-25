@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 import RegionalNewsSites from '../components/RegionalNewsSites';
 import { useState, useEffect } from 'react';

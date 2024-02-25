@@ -1,4 +1,3 @@
-import React from 'react'
 import DarkModeButton from '../components/DarkModeButton'
 
 const Home = () => {
@@ -43,9 +42,9 @@ const Home = () => {
                 <div className='border-x-2 border-b-2 p-2 border-slate-300'>
                     <h3 className='font-semibold'>To Do:</h3>
                     <ul className='list-disc ml-2 pl-3'>
-                        <li className='pl-2'>Fix white flash on screen reload (issue with Dark Mode load order)</li>
+                        <li className='pl-2 line-through'>Fix white flash on screen reload (issue with Dark Mode load order)</li>
                         <li className='pl-2'>Add user login / password protection</li>
-                        <li className='pl-2'>Implement sort options for Article Home, (key groupings)</li>
+                        <li className='pl-2 line-through'>Implement sort options for Article Home, (key groupings, dates)</li>
                         <li className='pl-2'>Search bar</li>
                     </ul>
                 </div>

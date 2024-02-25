@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import ArticleDetails from '../components/ArticleDetails';
 import ArticleDisplayNavbar from '../components/ArticleDisplayNavbar';
@@ -40,7 +40,7 @@ const ArticleDisplay = () => {
         </div>
       </div>
       {textData &&
-        <div className='bg-slate-300 dark:bg-slate-800 font-sans whitespace-pre-wrap h-full w-auto p-4'>
+        <div className='bg-slate-300 dark:bg-slate-800 font-sans whitespace-pre-wrap h-full w-auto p-4 mx-5'>
           <p className=' rounded shadow border-slate-400 dark:border-slate-200 border-2 p-4 bg-white dark:bg-slate-400'>{textData}</p>
         </div>}
     </div>

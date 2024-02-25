@@ -1,7 +1,7 @@
 import express, { response } from 'express';
 import { NewsSite } from '../models/newsSiteModel.js';
 import { ArticleIdx } from '../models/articleIndexModel.js';
-import { readFile } from 'node:fs'
+import { sortByKeywords, sortByDatePublishedOld, sortByDatePublishedNew, sortByDateAddedOld, sortByDateAddedNew } from '../queries/articleQuerys.js';
 
 const router = express.Router()
 
@@ -13,7 +13,7 @@ router.post('/', async (request, response) => {
         response.status(201).json({ newNewsSite })
     } catch (error) {
         console.log(error.message);
-        responseponse.status(500).send({ message: error.message });
+        response.status(500).send({ message: error.message });
     }
 });
 
@@ -51,28 +51,30 @@ router.get('/', async (request, response) => {
 
 router.get('/articles', async (request, response) => {
     try {
-        const articlesByKey = await ArticleIdx.aggregate([
-            { $unwind: '$keywords' },
-            { $sort: { 'dates.added': -1 } },
-            {
-                $group: {
-                    _id: '$keywords',
-                    articles: {
-                        $push: '$$ROOT'
-                    },
-                },
-            },
-            { $sort: { _id: 1 } }
-        ]);
-        const keywords = await ArticleIdx.aggregate([
-            { $unwind: '$keywords' },
-            { $group: { _id: "$keywords", count: { $sum: 1 } } },
-            { $sort: { _id: 1 } }
-        ])
-        return response.status(200).json({
-            articlesByKey: articlesByKey,
-            keywords: keywords
-        });
+        var results;
+
+        switch (request.query.sort) {
+            case '1':
+                results = await sortByKeywords();
+                break;
+            case '2':
+                results = await sortByDatePublishedOld();
+                break;
+            case '3':
+                results = await sortByDatePublishedNew();
+                break;
+            case '4':
+                results = await sortByDateAddedOld();
+                break;
+            case '5':
+                results = await sortByDateAddedNew();
+                break;
+            default:
+                console.log("Not a valid sort key");
+        }
+
+        return response.status(200).json(results);
+
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
