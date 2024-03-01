@@ -21,7 +21,7 @@ const NewsHome = () => {
     }, []);
 
     return (
-        <div id="top" className='font-sans bg-slate-300 dark:bg-slate-800 flex'>
+        <div id="top" className='font-sans bg-slate-300 dark:bg-slate-800 flex w-fit mx-auto'>
             {keyGroups && <ArticlesSidebar key={keyGroups._id} keyGroups={keyGroups} />}
             <div className='w-72 bg-slate-300 dark:bg-slate-800'>
                 {regionSites && regionSites.map((region) => {

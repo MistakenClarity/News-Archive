@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import newsRoute from "./routes/newsRoutes.js";
+import userRoute from "./routes/userRoutes.js"
 import cors from 'cors';
 import 'dotenv/config'
 
@@ -17,6 +18,8 @@ app.get('/', (request, response) => {
 })
 
 app.use('/news', newsRoute);
+
+app.use('/user', userRoute);
 
 // Database connection
 mongoose

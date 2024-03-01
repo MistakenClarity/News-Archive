@@ -23,7 +23,7 @@ const ArticlesHome = () => {
     }, [sortKey]);
 
     return (
-        <div className='font-sans bg-slate-300 dark:bg-slate-800'>
+        <div className='font-sans bg-slate-300 dark:bg-slate-800 w-fit mx-auto'>
             <ArticleTopbar key={sortKey} sortKey={sortKey} setSortKey={setSortKey} />
             <div className='flex'>
                 {keyGroups && <ArticlesSidebar key={keyGroups._id} keyGroups={keyGroups} />}

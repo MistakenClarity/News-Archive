@@ -6,7 +6,7 @@ const ArticleTopbar = ({ sortKey, setSortKey }) => {
     }
 
     return (
-        <div className='max-w-[926px] min-w-[478px] w-auto flex justify-center mb-2 mx-2 p-2 bg-white dark:bg-slate-500 shadow w-40 min-w-[165px] box-border border-4 min-w-36 dark:text-slate-200'>
+        <div className=' min-w-[478px] w-auto flex justify-center mb-2 mx-2 p-2 bg-white dark:bg-slate-500 shadow w-40 min-w-[165px] box-border border-4 min-w-36 dark:text-slate-200'>
             <h1 className='text-slate-800 dark:text-slate-200 my-auto mx-2'>Sort:</h1>
             <select onChange={handleSelect} defaultValue={sortKey} className='text-slate-600 rounded border-sky-500 py-1 bg-slate-200'>
                 <option value="1">Keyword</option>
