@@ -1,16 +1,38 @@
 import DarkModeButton from './DarkModeButton'
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import KeyboardDoubleArrowUpOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowUpOutlined';
+import NorthWestOutlinedIcon from '@mui/icons-material/NorthWestOutlined';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 
-const ArticleDisplayNavbar = () => {
+const StyledSpeedDial = styled(SpeedDial)(({ theme }) => ({
+  position: 'absolute', '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+  },'&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+    top: theme.spacing(2),
+    left: theme.spacing(2),
+  },
+}));
+
+const actions = [
+  { icon: <img src="/origami(1).png"/>, name: '/news', link:"/news" },
+  { icon: <NorthWestOutlinedIcon sx={{color: "white"}}/>, name: '/articles', link:"/news/articles"},
+  { icon: <KeyboardDoubleArrowUpOutlinedIcon sx={{color: "white"}}/>, name: '#top', link:"#top" },
+];
+
+const ArticleDisplayNavbar = ()=> {
   return (
-    <div className='dark:text-white fixed top-0 left-0 right-0 max-w-[450px] min-w-[250px] border-2 border-slate-400 mx-auto mb-2 py-1 rounded bg-slate-200 dark:bg-slate-500 shadow flex font-semibold text-sm'>
-
-      <div className='min-w-14 w-16 border-2 mx-auto border-slate-300 shadow bg-white dark:bg-slate-400 flex flex-col items-center '><DarkModeButton size={20} /></div>
-      <div className='min-w-14 w-16 border-2 mx-auto border-slate-300 shadow bg-white dark:bg-slate-400 hover:underline hover:underline-offset-2'><a href="/">/Home</a></div>
-      <div className='min-w-14 w-16 border-2 mx-auto border-slate-300 shadow bg-white dark:bg-slate-400 hover:underline hover:underline-offset-2'><a href="/news">/News</a></div>
-      <div className='min-w-14 w-16 border-2 mx-auto border-slate-300 shadow bg-white dark:bg-slate-400 hover:underline hover:underline-offset-2'><a href="/news/articles">/Articles</a></div>
-      <div className='min-w-14 w-16 border-2 mx-auto border-slate-300 shadow bg-white dark:bg-slate-400 hover:underline hover:underline-offset-2'><a href="#top">#Top</a></div>
+    <div className='fixed ml-8 bg-black text-black' >
+      <StyledSpeedDial ariaLabel="speedDial" icon={<SpeedDialIcon />} direction={'right'} FabProps={{sx: {bgcolor: 'black','&:hover': {bgcolor: 'gray'}, border: "2px solid white"} }}>
+        {actions.map((action) => (
+          <SpeedDialAction key={action.name} icon={action.icon} tooltipTitle={action.name} href={action.link} sx={{backgroundColor: "black", border: "solid 2px white", '&:hover': {bgcolor: 'gray'}}}/>
+        ))}
+      </StyledSpeedDial>      
     </div>
-  )
-}
 
+  );
+}
 export default ArticleDisplayNavbar

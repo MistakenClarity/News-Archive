@@ -10,7 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
     "@headlessui/react": "^1.7.18",
+    "@mui/icons-material": "^5.15.11",
+    "@mui/material": "^5.15.11",
     "axios": "^1.6.7",
     "flowbite": "^2.2.1",
     "flowbite-react": "^0.7.2",

@@ -32,16 +32,16 @@ const ArticleDisplay = () => {
   }
 
   return (
-    <div id="top" className='w-auto h-full font-sans bg-slate-300 dark:bg-slate-800'>
+    <div id="top" className='w-auto h-full font-sans bg-slate-300 dark:bg-zinc-900'>
       <div className='w-full text-center pt-4 '>
         <ArticleDisplayNavbar />
-        <div className='w-1/2 border-2 mx-auto mt-7 border-slate-400 bg-slate-100 dark:bg-slate-500 shadow rounded'>
+        <div className='w-1/2 border-2 mx-auto mt-7 border-zinc-900 bg-slate-100 dark:bg-zinc-900 shadow rounded'>
           {article && <ArticleDetails key={article._id} article={article} />}
         </div>
       </div>
       {textData &&
-        <div className='bg-slate-300 dark:bg-slate-800 font-sans whitespace-pre-wrap h-full w-auto p-4 mx-5'>
-          <p className=' rounded shadow border-slate-400 dark:border-slate-200 border-2 p-4 bg-white dark:bg-slate-400'>{textData}</p>
+        <div className='bg-slate-300 dark:bg-zinc-900 font-sans whitespace-pre-wrap h-full w-auto p-4 mx-5'>
+          <p className='rounded shadow border-slate-400 dark:border-slate-200 border-2 p-8 bg-white dark:bg-zinc-400'>{textData}</p>
         </div>}
     </div>
   )
