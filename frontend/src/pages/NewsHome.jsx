@@ -26,9 +26,9 @@ const NewsHome = () => {
         <div id="top" className='font-sans bg-zinc-300 flex dark:bg-zinc-900 w-fit'>
             {keyGroups && <ArticlesSidebar key={keyGroups._id} keyGroups={keyGroups} />}
             <div className='w-72 bg-zinc-300 dark:bg-zinc-900'>
-                {regionSites && regionSites.map((region) => {
+                {regionSites && regionSites.map((region, idx) => {
                     return (
-                        <RegionalNewsSites key={region._id} region={region} />
+                        <RegionalNewsSites key={"rns-" + region._id} region={region} />
                     );
                 })}
             </div>

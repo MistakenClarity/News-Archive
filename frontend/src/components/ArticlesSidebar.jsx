@@ -13,7 +13,7 @@ const ArticlesSidebar = ({ keyGroups }) => {
         {keyGroups.map((key, idx) => {
           var keyVal = (typeof (key._id) == "string") ? key._id : convertDate(key._id);
           return (
-            <h4 key={keyVal} className='font-semibold text-sm'><a className='dark:text-white hover:underline hover:underline-offset-2' href={`#${idx}`}>{`${keyVal}`} <span className='text-sm font-medium'> ({key.count})</span></a></h4>
+            <h4 key={"sb-" + keyVal} className='font-semibold text-sm'><a className='dark:text-white hover:underline hover:underline-offset-2' href={`#${keyVal}`}>{`${keyVal}`} <span className='text-sm font-medium'> ({key.count})</span></a></h4>
           );
         })}
       </div>

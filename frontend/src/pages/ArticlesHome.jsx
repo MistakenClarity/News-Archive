@@ -33,7 +33,7 @@ const ArticlesHome = () => {
                 <div>
                     {articles && articles.map((articleKeyBlock, idx) => {
                         return (
-                            <div key={idx} id={idx}> <GroupedArticles articleKeyBlock={articleKeyBlock} gIdx={idx} /> </div>
+                            <GroupedArticles articleKeyBlock={articleKeyBlock} gIdx={idx} key={"akb-" + idx}/>
                         );
                     })}
                 </div>

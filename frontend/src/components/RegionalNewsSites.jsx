@@ -7,7 +7,7 @@ const RegionalNewsSites = ({ region }) => {
             <h3 className='font-bold dark:text-white'>{region._id}</h3>
             {regionSites && regionSites.map((site) => {
                 return (
-                    <div className=''> <NewsSiteDetails key={site._id} site={site} /></div>
+                    <NewsSiteDetails key={site._id} site={site} />
                 )
             })}
         </div>
