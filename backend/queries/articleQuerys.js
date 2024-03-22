@@ -2,13 +2,14 @@ import { ArticleIdx } from '../models/articleIndexModel.js';
 
 export async function sortByKeywords() {
     const articles = await ArticleIdx.aggregate([
+        { $project: { keywords: '$keywords', root: '$$ROOT' } },
         { $unwind: '$keywords' },
         { $sort: { 'dates.added': -1 } },
         {
             $group: {
                 _id: '$keywords',
                 articles: {
-                    $push: '$$ROOT'
+                    $push: '$root'
                 },
             },
         },

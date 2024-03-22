@@ -14,6 +14,11 @@ export default {
       }
     },
   },
+  variants: {
+    extend: {
+      backgroundColor: ['active'],
+    }
+  },
   plugins: [
     require('flowbite/plugin')
   ],

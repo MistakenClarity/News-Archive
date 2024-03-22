@@ -1,7 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
 import newsRoute from "./routes/newsRoutes.js";
-import userRoute from "./routes/userRoutes.js"
+import userRoute from "./routes/userRoutes.js";
+import imageRoute from "./routes/imageRoutes.js";
 import cors from 'cors';
 import 'dotenv/config'
 
@@ -20,6 +21,8 @@ app.get('/', (request, response) => {
 app.use('/news', newsRoute);
 
 app.use('/user', userRoute);
+
+app.use('/images', imageRoute);
 
 // Database connection
 mongoose

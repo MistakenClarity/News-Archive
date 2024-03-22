@@ -9,6 +9,7 @@ const ArticlesSidebar = ({ keyGroups }) => {
         <h4 className='mb-2 pl-2 bg-white dark:bg-zinc-900 border-2 border-sky-700 dark:border-sky-300 font-bold rounded '><a href="/">/Home</a></h4>
         <h4 className='mb-2 pl-2 bg-white dark:bg-zinc-900 border-2 border-sky-700 dark:border-sky-300 font-bold rounded'><a href="/news">/News</a></h4>
         <h4 className='mb-2 pl-2 bg-white dark:bg-zinc-900 border-2 border-sky-700 dark:border-sky-300 font-bold rounded'><a href="/news/articles">/Articles</a></h4>
+        <h4 className='mb-2 pl-2 bg-white dark:bg-zinc-900 border-2 border-sky-700 dark:border-sky-300 font-bold rounded'><a href="/images">/Images</a></h4>
         <h4 className='mb-2 pl-2 bg-white dark:bg-zinc-900 border-2 border-sky-700 dark:border-sky-300 font-bold rounded '><a href="#top">#Top</a></h4>
         {keyGroups.map((key, idx) => {
           var keyVal = (typeof (key._id) == "string") ? key._id : convertDate(key._id);

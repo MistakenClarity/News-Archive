@@ -2,6 +2,8 @@ import express, { response } from 'express';
 import { NewsSite } from '../models/newsSiteModel.js';
 import { ArticleIdx } from '../models/articleIndexModel.js';
 import { sortByKeywords, sortByDatePublishedOld, sortByDatePublishedNew, sortByDateAddedOld, sortByDateAddedNew } from '../queries/articleQuerys.js';
+import mongoose from 'mongoose';
+import fs from 'fs';
 
 const router = express.Router()
 
@@ -49,10 +51,41 @@ router.get('/', async (request, response) => {
     }
 });
 
+router.get('/tester', async (request, response) => {
+    try {
+        const articleIdxs = await ArticleIdx.find();
+        const result = JSON.stringify(articleIdxs, null, 4);
+        fs.writeFile("ArticleIdxs.txt", result, err => {
+            if (err) { console.error(err) }
+            else { console.log('written') };
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+})
+
+router.get('/data', async (request, response) => {
+    try {
+        const newssites = await NewsSite.aggregate([
+            { $project: { name: '$name' } },
+            { $sort: { name: 1 } }
+        ]);
+        const articles = await ArticleIdx.aggregate([
+            { $project: { title: '$title' } }
+        ]);
+        return response.status(200).json({
+            newssites, articles
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({ message: error.message });
+    }
+})
+
 router.get('/articles', async (request, response) => {
     try {
         var results;
-
         switch (request.query.sort) {
             case '1':
                 results = await sortByKeywords();
@@ -72,9 +105,7 @@ router.get('/articles', async (request, response) => {
             default:
                 console.log("Not a valid sort key");
         }
-
         return response.status(200).json(results);
-
     } catch (error) {
         console.log(error.message);
         response.status(500).send({ message: error.message });
@@ -151,12 +182,23 @@ router.post('/article', async (request, response) => {
     try {
         const { title, publisher, authors, dates, notes, keywords } = request.body;
         const newArticle = await ArticleIdx.create({ title, publisher, authors, dates, notes, keywords });
-        console.log('Ok!')
         response.status(201).json({ newArticle })
     } catch (error) {
         console.log(error.message);
         responseponse.status(500).send({ message: error.message });
     }
+})
+
+router.patch('/articles/:id', async (request, response) => {
+    const { id } = request.params
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return response.status(404).json({ error: 'No such article' })
+    }
+    const article = await ArticleIdx.findByIdAndUpdate(id, { ...request.body })
+    if (!article) {
+        return response.status(404).json({ error: 'No such article' })
+    }
+    response.status(200).json(article)
 })
 
 export default router;
